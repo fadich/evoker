@@ -21,8 +21,10 @@ setup(
     packages=find_packages(),
     install_requires=[
         'aiohttp==3.8.1',
-        'celery==5.2.3',
-        'flower==1.0.0',
+        # 'celery==5.2.3',
+        # 'flower==1.0.0',
+        'celery==4.4.7',
+        'flower==0.9.5',
         'requests==2.27.1',
     ],
     scripts=[

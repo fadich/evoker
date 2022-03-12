@@ -6,7 +6,7 @@ x-common-variables: &common-variables
 services:
 
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    image: rabbitmq:3-management
     ports:
       - 5672:5672
       - 15672:15672
@@ -20,46 +20,15 @@ services:
 
   flower:
     <<: *app
+#    command: bash -c "celery -A evoker.workers flower --broker_api=amqp://guest@rabbitmq:15672/api"
     command: bash -c "celery -A evoker.workers flower"
     ports:
       - 5555:5555
+    depends_on:
+      - rabbitmq
 
-  worker: &worker
+  worker:
     <<: *app
-    command: bash -c "celery -A evoker.workers worker -n worker-1"
-
-  worker-2:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-2"
-
-  worker-3:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-3"
-
-  worker-4:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-4"
-
-  worker-5:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-5"
-
-  worker-6:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-6"
-
-  worker-7:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-7"
-
-  worker-8:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-8"
-
-  worker-9:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-9"
-
-  worker-10:
-    <<: *worker
-    command: bash -c "celery -A evoker.workers worker -n worker-10"
+    command: bash -c "celery -A evoker.workers worker"
+    depends_on:
+      - rabbitmq

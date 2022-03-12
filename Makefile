@@ -10,10 +10,10 @@ build-services:
 	docker-compose build
 
 up:
-	docker-compose up
+	docker-compose up --scale worker=10
 
 up-d:
-	docker-compose up -d
+	docker-compose up -d --scale worker=10
 
 down:
 	docker-compose down
