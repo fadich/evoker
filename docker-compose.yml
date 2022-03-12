@@ -1,0 +1,102 @@
+version: "3.2"
+
+x-common-variables: &common-variables
+  CELERY_BROKER_URL: amqp://guest@rabbitmq:5672
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  flower:
+    build: .
+    command: bash -c "celery -A evoker.workers flower"
+    environment:
+      <<: *common-variables
+    ports:
+      - 5555:5555
+    depends_on:
+      - rabbitmq
+
+  worker:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-1"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-2:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-2"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-3:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-3"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-4:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-4"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-5:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-5"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-6:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-6"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-7:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-7"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-8:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-8"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-9:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-9"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
+
+  worker-10:
+    build: .
+    command: bash -c "celery -A evoker.workers worker -n worker-10"
+    environment:
+      <<: *common-variables
+    depends_on:
+      - rabbitmq
