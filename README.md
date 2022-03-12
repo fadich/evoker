@@ -10,7 +10,7 @@ Install [Python 3.x](https://www.python.org/downloads/).
 
 #### Docker
 
-Install [Docker](https://www.digitalocean. com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+Install [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 and [Docker Compose](https://docs.docker.com/compose/install/).
 
 #### Make
